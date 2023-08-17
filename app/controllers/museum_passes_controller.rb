@@ -5,6 +5,11 @@ class MuseumPassesController < ApplicationController
         render json: passes
     end
 
+    def show
+        pass = MuseumPass.find(params[:id])
+        render json: pass, include: :reservations
+    end
+
     def create
         pass = MuseumPass.create(pass_params)
         render json: pass, status: :created
@@ -13,7 +18,13 @@ class MuseumPassesController < ApplicationController
     def update
         pass = MuseumPass.find(params[:id])
         pass.update(pass_params)
-        render json: pass, status: :accepted
+        render json: pass, include: :reservations
+    end
+
+    def destroy
+        pass = MuseumPass.find(params[:id])
+        pass.destroy
+        head :no_content
     end
 
     private
