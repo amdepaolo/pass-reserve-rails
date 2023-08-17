@@ -10,13 +10,13 @@ function App() {
   const [currentPass, setCurrentPass] = useState({reservations:[]});
 
   useEffect(()=>{
-    fetch('http://localhost:9292/passes')
+    fetch('/museum_passes')
     .then(r => r.json())
     .then(setPasses)
   },[])
 
   function handlePassClick(id){
-    fetch(`http://localhost:9292/passes/${id}`)
+    fetch(`/museum_passes/${id}`)
     .then(r => r.json())
     .then(setCurrentPass)
   }

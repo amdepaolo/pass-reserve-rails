@@ -10,7 +10,7 @@ function CreatePassForm({onResponse}){
 
     function handleSubmit(e){
         e.preventDefault();
-        fetch(`http://localhost:9292/passes`, {
+        fetch(`/museum_passes`, {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(passForm)
