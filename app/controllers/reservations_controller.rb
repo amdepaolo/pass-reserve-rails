@@ -13,6 +13,13 @@ class ReservationsController < ApplicationController
         render json: reservation, status: :created
     end
 
+    def destroy
+        pass = MuseumPass.find(params[:museum_pass_id])
+        reservation = pass.reservations.find(params[:id])
+        reservation.destroy
+        head :no_content
+    end
+
     private
 
     def reservation_params
