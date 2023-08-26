@@ -8,9 +8,12 @@ class ReservationsController < ApplicationController
 
     def create
         pass = MuseumPass.find(params[:museum_pass_id])
-        reservation = pass.reservations.create(reservation_params)
-        reservation.expected_check_in = reservation.check_out + 2
-        render json: reservation, status: :created
+        reservation = pass.reservations.new(reservation_params)
+        reservation.expected_check_in = reservation.check_out.next_day(2)
+        reservation.save!
+        render json: pass.reservations, status: :created
+    rescue ActiveRecord::RecordInvalid
+        render json: {error: "Reservation error, check for conflicts"}, status: :unprocessable_entity
     end
 
     def destroy
@@ -23,6 +26,6 @@ class ReservationsController < ApplicationController
     private
 
     def reservation_params
-        params.permit(:patron_name, :email, :phone, :extra_notes, :patron_card. :check_out)
+        params.permit(:patron_name, :email, :phone, :extra_notes, :patron_card, :check_out)
     end
 end

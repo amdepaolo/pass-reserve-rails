@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 
 function ReservationForm({passId, passName, onResponse}){
-    const [resFormObj, setResFormObj] = useState({name: '', email: '', check_out: ''})
+    const [resFormObj, setResFormObj] = useState({patron_name: '', email: '', check_out: ''})
     const disableButton = passId === undefined? true: false
 
     function updateResForm(key, value){
@@ -11,14 +11,14 @@ function ReservationForm({passId, passName, onResponse}){
 
     function handleSubmit(e){
         e.preventDefault();
-        fetch(`http://localhost:9292/passes/${passId}`, {
+        fetch(`/museum_passes/${passId}/reservations`, {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(resFormObj)
         })
         .then(r => r.json())
         .then(onResponse) 
-        .then(()=>setResFormObj({name: '', email: '', check_out: ''}))    
+        .then(()=>setResFormObj({patron_name: '', email: '', check_out: ''}))    
     }
 
     return(
@@ -27,7 +27,7 @@ function ReservationForm({passId, passName, onResponse}){
             <label>Name: </label>
             <input
                 value={resFormObj.name} 
-                onChange={e => updateResForm('name', e.target.value)} 
+                onChange={e => updateResForm('patron_name', e.target.value)} 
                 type='text' 
             /><br/>
             <label>Email: </label>

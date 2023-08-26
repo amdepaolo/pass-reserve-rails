@@ -9,13 +9,11 @@ function ReservationInfo({reservation, onEdit, onDelete}){
         else return dateString.split('T')[0]
     }
 
-    function cancelClick(id){
-        fetch(`http://localhost:9292/reservations/${id}`, {
+    function cancelClick(passId, id){
+        fetch(`museum_passes/${passId}/reservations/${id}`, {
             method: 'DELETE',
             headers: { "Content-Type": "application/json" }
-        })
-        .then(r => r.json())
-        .then(onDelete)
+        }).then(r => {if (r.ok){onDelete(id)}else{window.alert("error")}})
     }
 
     if (edit) {
@@ -26,11 +24,11 @@ function ReservationInfo({reservation, onEdit, onDelete}){
 
     else return(
         <tr>
-            <td>{reservation.name}</td>
+            <td>{reservation.patron_name}</td>
             <td>{reservation.email}</td>
             <td>{cleanUpDate(reservation.check_out)}</td>
-            <td>{cleanUpDate(reservation.check_in)}</td>
-            <td><button onClick={()=>cancelClick(reservation.id)}>Cancel Reservation?</button></td>
+            <td>{cleanUpDate(reservation.expected_check_in)}</td>
+            <td><button onClick={()=>cancelClick(reservation.museum_pass_id,reservation.id)}>Cancel Reservation?</button></td>
             <td><button onClick={()=>setEdit(true)}>Edit Reservation?</button></td>
         </tr>
     )

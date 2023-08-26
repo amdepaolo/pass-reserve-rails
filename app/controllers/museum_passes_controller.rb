@@ -2,7 +2,7 @@ class MuseumPassesController < ApplicationController
 
     def index
         passes = MuseumPass.all
-        render json: passes
+        render json: passes, include: :reservations
     end
 
     def show

@@ -47,8 +47,8 @@ function App() {
     } else {window.alert(response.error)}
   };
 
-  function updateResWithDelete(response){
-    const updatedResArr = currentPass.reservations.filter(reservation => reservation.id !== response.id);
+  function updateResWithDelete(deletedId){
+    const updatedResArr = currentPass.reservations.filter(reservation => reservation.id !== deletedId);
     const updatedPass = {...currentPass, reservations: updatedResArr};
     setCurrentPass(updatedPass)
   }
