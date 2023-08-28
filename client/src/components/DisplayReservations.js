@@ -12,6 +12,8 @@ function DisplayReservations({currentPass, onDelete, onEdit}){
     return(
         <div className="reservations">
             <h2>Reservations for {currentPass.name}:</h2>
+            <p><b>Website:</b> {currentPass.website}</p>
+            <p><b>Additional Info:</b> {currentPass.additional_info}</p>
             <table className="reservations">
                 <thead>
                     <tr>

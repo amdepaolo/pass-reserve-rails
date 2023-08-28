@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 
 function CreatePassForm({onResponse}){
-    const [passForm, setPassForm] = useState({name: '', website:''})
+    const [passForm, setPassForm] = useState({name: '', website:'', additional_info: ''})
 
     function updatePassForm(key,value){
         const updatedForm = {...passForm, [key]:value};
@@ -17,8 +17,9 @@ function CreatePassForm({onResponse}){
         })
         .then(r => r.json())
         .then(onResponse)
-        .then(()=>setPassForm({name:'', website:''}))     
+        .then(()=>setPassForm({name:'', website:'', additional_info:''}))     
     }
+    
     return(
         <form className="panel">
             <h2>Add Pass</h2>
@@ -33,6 +34,11 @@ function CreatePassForm({onResponse}){
                 value={passForm.website}
                 onChange={e=>updatePassForm('website', e.target.value)} type='text'>
             </input>
+            <textarea 
+                onChange={e=>updatePassForm('additional_info', e.target.value)}
+                value={passForm.additional_info}>
+
+            </textarea>
             <input onClick={handleSubmit} type='submit'/>
         </form>
     )
