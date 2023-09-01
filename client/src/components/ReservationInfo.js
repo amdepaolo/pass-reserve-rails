@@ -26,6 +26,9 @@ function ReservationInfo({reservation, onEdit, onDelete}){
         <tr>
             <td>{reservation.patron_name}</td>
             <td>{reservation.email}</td>
+            <td>{reservation.phone}</td>
+            <td>{reservation.patron_card}</td>
+            <td>{reservation.extra_notes}</td>
             <td>{cleanUpDate(reservation.check_out)}</td>
             <td>{cleanUpDate(reservation.expected_check_in)}</td>
             <td><button onClick={()=>cancelClick(reservation.museum_pass_id,reservation.id)}>Cancel Reservation?</button></td>

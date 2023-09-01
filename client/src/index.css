@@ -11,3 +11,20 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+table, thead, tbody{
+  margin: auto;
+}
+
+thead{
+  background-color: rgb(6, 16, 87);
+  color: white;
+}
+
+tr:nth-child(even) {
+  background-color: #e3e3e3;
+}
+
+tr:hover { 
+  background-color: yellow;
+}

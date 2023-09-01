@@ -1,7 +1,15 @@
 import React, {useState} from 'react'
 
 function ReservationForm({passId, passName, onResponse}){
-    const [resFormObj, setResFormObj] = useState({patron_name: '', email: '', check_out: ''})
+    const blankFormObj = {
+        patron_name: '', 
+        email: '', 
+        check_out: '',
+        patron_card: '',
+        phone: '',
+        extra_notes: ''
+    }
+    const [resFormObj, setResFormObj] = useState( blankFormObj)
     const disableButton = passId === undefined? true: false
 
     function updateResForm(key, value){
@@ -18,7 +26,7 @@ function ReservationForm({passId, passName, onResponse}){
         })
         .then(r => r.json())
         .then(onResponse) 
-        .then(()=>setResFormObj({patron_name: '', email: '', check_out: ''}))    
+        .then(()=>setResFormObj(blankFormObj))    
     }
 
     return(
@@ -34,6 +42,23 @@ function ReservationForm({passId, passName, onResponse}){
             <input 
                 value={resFormObj.email}
                 onChange={e => updateResForm('email', e.target.value)}
+                type='text'
+            /><br/>
+            <label>Phone Number: </label>
+            <input 
+                value={resFormObj.phone}
+                onChange={e => updateResForm('phone', e.target.value)}
+                type='text'
+            /><br/><label>Patron Card: </label>
+            <input 
+                value={resFormObj.patron_card}
+                onChange={e => updateResForm('patron_card', e.target.value)}
+                type='text'
+            /><br/>
+            <label>Extra Notes: </label>
+            <input 
+                value={resFormObj.extra_notes}
+                onChange={e => updateResForm('extra_notes', e.target.value)}
                 type='text'
             /><br/>
             <label>Choose Date: </label>

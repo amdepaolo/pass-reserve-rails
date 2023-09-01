@@ -1,9 +1,10 @@
-import './App.css';
+// import './App.css';
 import { useEffect, useState } from 'react'; 
 import ReservationForm from './components/ReservationForm';
 import Passes from './components/Passes';
 import DisplayReservations from './components/DisplayReservations';
 import CreatePassForm from './components/CreatePassForm';
+import Grid from '@mui/material/Unstable_Grid2';
 
 function App() {
   const [passes, setPasses] = useState([]);
@@ -56,10 +57,20 @@ function App() {
   return (
     <div className="App">
       <h1>Library Museum Pass Reservations</h1>
-      <Passes passes={passes} onPassClick={handlePassClick}/>
-      <CreatePassForm onResponse={updatePasses}/>
-      <ReservationForm passId={currentPass.id} passName={currentPass.name} onResponse={updateReservations}/>
-      <DisplayReservations currentPass={currentPass} onEdit={updateResWithEdit} onDelete={updateResWithDelete}/>
+      <Grid container>
+        <Grid xs={10} md={4}>
+          <Passes passes={passes} onPassClick={handlePassClick}/>
+        </Grid>
+        <Grid xs={10} md={8}>
+          <CreatePassForm onResponse={updatePasses}/>
+        </Grid>
+        <Grid xs={10} md={4}>
+          <ReservationForm passId={currentPass.id} passName={currentPass.name} onResponse={updateReservations}/>
+        </Grid>
+        <Grid xs={10} md={8}>
+          <DisplayReservations currentPass={currentPass} onEdit={updateResWithEdit} onDelete={updateResWithDelete}/>
+        </Grid>
+      </Grid>
     </div>
   );
 }

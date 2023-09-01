@@ -34,6 +34,7 @@ function CreatePassForm({onResponse}){
                 value={passForm.website}
                 onChange={e=>updatePassForm('website', e.target.value)} type='text'>
             </input>
+            <label>Extra Information:</label>
             <textarea 
                 onChange={e=>updatePassForm('additional_info', e.target.value)}
                 value={passForm.additional_info}>

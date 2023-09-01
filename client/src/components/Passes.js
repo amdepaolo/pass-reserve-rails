@@ -16,11 +16,9 @@ function Passes({passes, onPassClick}){
             <h2>Museum Passses:</h2>
             <table>
                 <thead>
-                    <tr>
-                        <td>Facility Name</td>
-                        <td>Facility Website</td>
-                        <td> </td>
-                    </tr>
+                    <th>Facility Name</th>
+                    <th>Facility Website</th>
+                    <th> </th>
                 </thead>
                 <tbody>
                     {listOfPasses}    

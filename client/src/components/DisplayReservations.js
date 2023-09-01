@@ -16,14 +16,15 @@ function DisplayReservations({currentPass, onDelete, onEdit}){
             <p><b>Additional Info:</b> {currentPass.additional_info}</p>
             <table className="reservations">
                 <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Check-out Date</th>
-                        <th>Check-in Date</th>
-                        <th>Cancel?</th>
-                        <th>Edit?</th>
-                    </tr>
+                    <th>Patron Name</th>
+                    <th>Email</th>
+                    <th>Phone Number</th>
+                    <th>Patron Card</th>
+                    <th>Extra Notes</th>
+                    <th>Check-out Date</th>
+                    <th>Check-in Date</th>
+                    <th>Cancel?</th>
+                    <th>Edit?</th>
                 </thead>
                 <tbody>
                     {reservationList}
