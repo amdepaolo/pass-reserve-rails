@@ -16,6 +16,13 @@ class ReservationsController < ApplicationController
         render json: {error: "Reservation error, check for conflicts"}, status: :unprocessable_entity
     end
 
+    def update
+        pass = MuseumPass.find(params[:museum_pass_id])
+        reservation = pass.reservations.find(params[:id])
+        reservation.update(reservation_params)
+        render json: reservation, status: :accepted
+    end
+
     def destroy
         pass = MuseumPass.find(params[:museum_pass_id])
         reservation = pass.reservations.find(params[:id])
@@ -26,6 +33,6 @@ class ReservationsController < ApplicationController
     private
 
     def reservation_params
-        params.permit(:patron_name, :email, :phone, :extra_notes, :patron_card, :check_out)
+        params.permit(:patron_name, :email, :phone, :extra_notes, :patron_card, :check_out, :expected_check_in)
     end
 end
