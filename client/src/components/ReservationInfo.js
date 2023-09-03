@@ -10,10 +10,12 @@ function ReservationInfo({reservation, onEdit, onDelete}){
     }
 
     function cancelClick(passId, id){
-        fetch(`museum_passes/${passId}/reservations/${id}`, {
-            method: 'DELETE',
-            headers: { "Content-Type": "application/json" }
-        }).then(r => {if (r.ok){onDelete(id)}else{window.alert("error")}})
+        if(window.confirm("Cancel Reservation?")){
+            fetch(`museum_passes/${passId}/reservations/${id}`, {
+                method: 'DELETE',
+                headers: { "Content-Type": "application/json" }
+            }).then(r => {if (r.ok){onDelete(id)}else{window.alert("error")}})
+        }
     }
 
     if (edit) {
