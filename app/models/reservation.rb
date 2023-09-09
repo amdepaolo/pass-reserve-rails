@@ -3,6 +3,14 @@ class Reservation < ApplicationRecord
     validates :patron_name, presence: true
     validate :prevent_double_reservations
 
+    def loan_period
+        return self.check_out .. self.expected_check_in
+    end
+
+    def museum_name
+        return self.museum_pass.name
+    end
+
     def prevent_double_reservations
         range = self.check_out..self.expected_check_in
         pass = self.museum_pass

@@ -30,6 +30,13 @@ class ReservationsController < ApplicationController
         head :no_content
     end
 
+    def by_date
+        param_date = Date.parse(params[:date])
+        date_range = param_date..param_date.next_day(2)
+        reservations = Reservation.where(check_in: date_range).or(Reservation.where(expected_check_in: date_range))
+        render json: reservations, include: :museum_name
+    end
+
     private
 
     def reservation_params
