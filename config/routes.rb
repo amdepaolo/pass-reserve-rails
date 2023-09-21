@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   resources :museum_passes do 
     resources :reservations
   end
+  get "/reservations/:date", to: "reservations#by_date"
 end
